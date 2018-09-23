@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./style.css">
+  <title>Document</title>
+</head>
+
+<body ng-app='messages' ng-controller='messageFun'>
+
+  <div class="channel">
+    <div class="title">
+      <h2>Sport</h2>
+      <button ng-click="connect('sport')" class="btn">Join</button>
+    </div>
+
+    <div class="messages">
+      <hr>
+      <form id="sport" onsubmit="return false">
+        <div>
+          <input type="text" placeholder="Name" name="userName">
+        </div>
+        <div>
+          Message <textarea name="text" cols="42" rows="4"></textarea>
+        </div>
+        <div>
+          <button ng-click="sendMessage('sport')">Send</button>
+        </div>
+      </form>
+      <hr>
+      <ul>
+        <li ng-repeat='message in data.sport'>
+          User name: <b>{{message.userName}}</b> <br />
+          Message: {{message.text}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="channel">
+    <div class="title">
+      <h2>Food</h2>
+      <button ng-click="connect('food')" class="btn">Join</button>
+    </div>
+
+    <div class="messages">
+      <hr>
+      <form id="food" onsubmit="return false">
+        <div>
+          <input type="text" name="userName" id="" placeholder="Name">
+        </div>
+        <div>
+          Message <textarea name="text" id="" cols="42" rows="4"></textarea>
+        </div>
+        <div>
+          <button ng-click="sendMessage('food')">Send</button>
+        </div>
+      </form>
+      <hr>
+      <ul>
+        <li ng-repeat='message in data.food' ng-click="deleteMessage(message)">
+          User name: <b>{{message.userName}}</b> <br />
+          Message: {{message.text}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="channel">
+    <div class="title">
+      <h2>It</h2>
+      <button ng-click="connect('it')" class="btn">Join</button>
+    </div>
+
+    <div class="messages">
+      <hr>
+      <form id="it" onsubmit="return false">
+        <div>
+          <input type="text" name="userName" id="" placeholder="Name">
+        </div>
+        <div>
+          Message <textarea name="text" id="" cols="42" rows="4"></textarea>
+        </div>
+        <div>
+          <button ng-click="sendMessage('it')" >Send</button>
+        </div>
+      </form>
+      <hr>
+      <ul>
+        <li ng-repeat='message in data.it'>
+          User name: <b>{{message.userName}}</b> <br />
+          Message: {{message.text}}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="/dependencies/sails.io.js"></script>
+  <script src="/dependencies/angular.js"></script>
+  <script src="/dependencies/main.js"></script>
+</body>
+
+</html>
