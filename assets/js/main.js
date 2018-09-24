@@ -13,7 +13,7 @@ angular.module('messages', [])
       });
     }
 
-    $scope.data = {
+    $scope.data = {                   
       it: [],
       sport: [],
       food: []
@@ -34,13 +34,25 @@ angular.module('messages', [])
     io.socket.on('message', function (msg) {
       $scope.data[msg.channelName].push({
         userName: msg.userName,
-        text: msg.text
+        text: msg.text,
+        id: msg.id
       });
       $scope.$digest();
     });
 
+
+    io.socket.on('delete', function (msg) {
+      let i = $scope.data[msg.channelName].findIndex(obj => obj.id === msg.id);
+      $scope.data[msg.channelName].splice(i, 1);
+      $scope.$digest();
+    });
+
     $scope.deleteMessage = function (message) {
-      console.log(message)
+      io.socket.delete('/delete', {
+        id: message.id,
+        channelName: message.channelName
+      });
+
     }
 
   }]);

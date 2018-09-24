@@ -1,0 +1,14 @@
+{"$$indexCreated":{"fieldName":"id","unique":true,"sparse":false}}
+{"createdAt":1537724917853,"updatedAt":1537724917853,"id":1,"channelName":"sport","text":"111","userName":"11","_id":1}
+{"createdAt":1537724931173,"updatedAt":1537724931173,"id":2,"channelName":"sport","text":"22","userName":"22","_id":2}
+{"createdAt":1537725353475,"updatedAt":1537725353475,"id":3,"channelName":"food","text":"11","userName":"11","_id":3}
+{"createdAt":1537725376007,"updatedAt":1537725376007,"id":4,"channelName":"it","text":"йц","userName":"йц","_id":4}
+{"createdAt":1537725394005,"updatedAt":1537725394005,"id":5,"channelName":"it","text":"и","userName":"иори","_id":5}
+{"createdAt":1537725427899,"updatedAt":1537725427899,"id":6,"channelName":"sport","text":"333","userName":"22233","_id":6}
+{"createdAt":1537726438420,"updatedAt":1537726438420,"id":7,"channelName":"sport","text":"nn","userName":"nn","_id":7}
+{"createdAt":1537728374143,"updatedAt":1537728374143,"id":8,"channelName":"sport","text":"qq","userName":"qqqq","_id":8}
+{"createdAt":1537729176658,"updatedAt":1537729176658,"id":9,"channelName":"sport","text":"wee","userName":"ewew","_id":9}
+{"createdAt":1537729295029,"updatedAt":1537729295029,"id":10,"channelName":"sport","text":"11","userName":"11","_id":10}
+{"createdAt":1537729394114,"updatedAt":1537729394114,"id":11,"channelName":"it","text":"1","userName":"1","_id":11}
+{"createdAt":1537729409424,"updatedAt":1537729409424,"id":12,"channelName":"it","text":"1","userName":"1","_id":12}
+{"createdAt":1537729613561,"updatedAt":1537729613561,"id":13,"channelName":"food","text":"1111111111111111","userName":"111111111","_id":13}
