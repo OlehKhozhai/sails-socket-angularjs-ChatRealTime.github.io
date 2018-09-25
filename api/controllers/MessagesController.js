@@ -5,7 +5,7 @@ module.exports = {
     }
 
     sails.sockets.join(req, req.param('channelName'));
-
+  
   },
 
   send: async function (req, res) {
@@ -23,7 +23,7 @@ module.exports = {
 
       sails.sockets.broadcast(req.param('channelName'), newMessage);
     },
-
+    
     delete: async function (req, res) {
       if (!req.isSocket) {
         return res.badRequest('Only socket accepted');
@@ -35,5 +35,5 @@ module.exports = {
           channelName: req.param('channelName')
         }
       sails.sockets.broadcast(req.param('channelName'), 'delete', data);
-    }
+    }     
 };
