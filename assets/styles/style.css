@@ -4,7 +4,6 @@
 
 body {
     display: flex;
-    justify-content: space-around;
     background-color: rgb(245, 245, 240);
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -15,6 +14,7 @@ body {
     margin: 10px;
     background-color: rgb(172, 231, 148);
     border-radius: 10px;
+    height: auto;
 }
 
 .title {
@@ -27,11 +27,6 @@ body {
 .title h2 {
     font-size: 30px;
     color: #0d4e13;
-}
-
-.messages ul {
-    width: auto;
-    padding: 0 18px;
 }
 
 form div {
@@ -55,13 +50,19 @@ form textarea {
     padding-top: 9px;
 }
 
-form input:focus, form textarea:focus, button:focus  {
+form input:focus, form textarea:focus, button:focus {
     outline: none
+}
+
+.messages ul {
+    width: auto;
+    padding: 0 18px;
 }
 
 .messages ul li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .msgContainer {
@@ -71,7 +72,7 @@ form input:focus, form textarea:focus, button:focus  {
 }
 
 .imgContainer {
-    width: 25px;
+    width: 18px;
 }
 
 .imgContainer img {

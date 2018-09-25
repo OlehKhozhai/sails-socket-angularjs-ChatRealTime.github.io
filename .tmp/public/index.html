@@ -87,17 +87,17 @@
   <div class="channel">
     <div class="title">
       <h2>It</h2>
-      <button ng-click="connect('it')" class="btnSend">Join</button>
+      <button ng-click="connect('it'), " class="btnSend">Join</button>
     </div>
 
     <div class="messages">
       <hr>
-      <form id="it" onsubmit="return false">
+      <form id="it" onsubmit="return false" disabled="{{scope.isDisabled}}">
         <div>
-          <input type="text" name="userName" id="" placeholder="Name">
+          <input type="text" name="userName" placeholder="Name" required>
         </div>
         <div>
-          <textarea name="text" id="" cols="42" rows="4" placeholder="Message"></textarea>
+          <textarea name="text" cols="42" rows="4" placeholder="Message" required></textarea>
         </div>
         <div>
           <button ng-click="sendMessage('it')" class="btnSend">Send</button>
@@ -107,8 +107,8 @@
       <ul>
         <li ng-repeat='message in data.it' ng-click="deleteMessage(message)">
           <div class="msgContainer">
-            <b>User name: {{message.userName}}</b> <br />
-            <b>Message:</b> {{message.text}}
+            <b>{{message.userName | uppercase}}:</b>
+            {{message.text}}
           </div>
 
           <div class="imgContainer">

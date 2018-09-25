@@ -13,12 +13,12 @@ angular.module('messages', [])
       });
     }
 
-    $scope.data = {                   
+    $scope.data = {
       it: [],
       sport: [],
       food: []
     };
-
+     
     $scope.sendMessage = function (channelName) {
       let form = document.getElementById(channelName);
       let data = {
@@ -40,6 +40,12 @@ angular.module('messages', [])
       $scope.$digest();
     });
 
+    $scope.deleteMessage = function (message) {
+      io.socket.delete('/delete', {
+        id: message.id,
+        channelName: message.channelName
+      });
+    }
 
     io.socket.on('delete', function (msg) {
       let i = $scope.data[msg.channelName].findIndex(obj => obj.id === msg.id);
@@ -47,12 +53,5 @@ angular.module('messages', [])
       $scope.$digest();
     });
 
-    $scope.deleteMessage = function (message) {
-      io.socket.delete('/delete', {
-        id: message.id,
-        channelName: message.channelName
-      });
-
-    }
-
   }]);
+  
