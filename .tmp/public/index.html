@@ -14,10 +14,10 @@
   <div class="channel">
     <div class="title">
       <h2>Sport</h2>
-      <button ng-click="connect('sport')" class="btnSend">Join</button>
+      <button ng-click="connect('sport'); showMe=!showMe" class="btnSend">Join</button>
     </div>
 
-    <div class="messages">
+    <div class="messages" ng-show="showMe">
       <hr>
       <form id="sport" onsubmit="return false">
         <div>
@@ -32,7 +32,7 @@
       </form>
       <hr>
       <ul>
-        <li ng-repeat='message in data.sport' ng-click="deleteMessage(message)">
+        <li ng-repeat='message in data.sport' ng-click="deleteMessage(message, 'sport')">
           <div class="msgContainer">
             User name: <b>{{message.userName}}</b> <br />
             Message: {{message.text}}
@@ -50,10 +50,10 @@
   <div class="channel">
     <div class="title">
       <h2>Food</h2>
-      <button ng-click="connect('food')" class="btnSend">Join</button>
+      <button ng-click="connect('food'); showMe2=!showMe2" class="btnSend">Join</button>
     </div>
 
-    <div class="messages">
+    <div class="messages" ng-show="showMe2">
       <hr>
       <form id="food" onsubmit="return false">
         <div>
@@ -68,7 +68,7 @@
       </form>
       <hr>
       <ul>
-        <li ng-repeat='message in data.food' ng-click="deleteMessage(message)">
+        <li ng-repeat='message in data.food' ng-click="deleteMessage(message, 'food')">
           <div class="msgContainer">
             User name: <b>{{message.userName}}</b> <br />
             Message: {{message.text}}
@@ -87,10 +87,10 @@
   <div class="channel">
     <div class="title">
       <h2>It</h2>
-      <button ng-click="connect('it'), " class="btnSend">Join</button>
+      <button ng-click="connect('it'); showMe3=!showMe3" class="btnSend">Join</button>
     </div>
 
-    <div class="messages">
+    <div class="messages" ng-show="showMe3">
       <hr>
       <form id="it" onsubmit="return false" disabled="{{scope.isDisabled}}">
         <div>
@@ -105,7 +105,7 @@
       </form>
       <hr>
       <ul>
-        <li ng-repeat='message in data.it' ng-click="deleteMessage(message)">
+        <li ng-repeat='message in data.it' ng-click="deleteMessage(message,'it')">
           <div class="msgContainer">
             <b>{{message.userName | uppercase}}:</b>
             {{message.text}}
