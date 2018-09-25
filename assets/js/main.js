@@ -40,10 +40,10 @@ angular.module('messages', [])
       $scope.$digest();
     });
 
-    $scope.deleteMessage = function (message) {
+    $scope.deleteMessage = function (message, channelName) {
       io.socket.delete('/delete', {
         id: message.id,
-        channelName: message.channelName
+        channelName: channelName
       });
     }
 

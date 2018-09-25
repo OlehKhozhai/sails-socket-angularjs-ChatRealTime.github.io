@@ -32,7 +32,7 @@
       </form>
       <hr>
       <ul>
-        <li ng-repeat='message in data.sport' ng-click="deleteMessage(message)">
+        <li ng-repeat='message in data.sport' ng-click="deleteMessage(message, 'sport')">
           <div class="msgContainer">
             User name: <b>{{message.userName}}</b> <br />
             Message: {{message.text}}
@@ -68,7 +68,7 @@
       </form>
       <hr>
       <ul>
-        <li ng-repeat='message in data.food' ng-click="deleteMessage(message)">
+        <li ng-repeat='message in data.food' ng-click="deleteMessage(message, 'food')">
           <div class="msgContainer">
             User name: <b>{{message.userName}}</b> <br />
             Message: {{message.text}}
@@ -105,7 +105,7 @@
       </form>
       <hr>
       <ul>
-        <li ng-repeat='message in data.it' ng-click="deleteMessage(message)">
+        <li ng-repeat='message in data.it' ng-click="deleteMessage(message,'it')">
           <div class="msgContainer">
             <b>{{message.userName | uppercase}}:</b>
             {{message.text}}
