@@ -1,6 +1,6 @@
 angular.module('messages', [])
   .controller('messageFun', ['$http', '$scope', function ($http, $scope) {
-
+   
     $scope.connect = function (channelName) {
       $http
         .get('http://localhost:1337/messages?where={"channelName":{"contains":"' + channelName + '"}}')
@@ -11,13 +11,13 @@ angular.module('messages', [])
       io.socket.post('/on-connect', {
         channelName: channelName
       });
-    }
-
-    $scope.data = {
+    }  
+  
+    $scope.data = { 
       it: [],
-      sport: [],
-      food: []
-    };
+      sport: [], 
+      food: []                   
+    };   
      
     $scope.sendMessage = function (channelName) {
       let form = document.getElementById(channelName);
@@ -29,6 +29,7 @@ angular.module('messages', [])
 
       io.socket.post('/send', data);
       form.reset();
+      $scope.sportText=null;      
     };
 
     io.socket.on('message', function (msg) {
@@ -52,6 +53,6 @@ angular.module('messages', [])
       $scope.data[msg.channelName].splice(i, 1);
       $scope.$digest();
     });
-
+    
   }]);
   
