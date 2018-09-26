@@ -28,6 +28,7 @@ module.exports.routes = {
   //   view: 'pages/homepage'
   // },
 
+  /*  зєднуємося з MessagesController і викликаємо відповідний метод */
   'POST /on-connect': 'MessagesController.onConnect',
   'POST /send': 'MessagesController.send',
   'DELETE /delete': 'MessagesController.delete'
