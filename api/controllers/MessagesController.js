@@ -10,7 +10,7 @@ module.exports = {
     }
 
     sails.sockets.join(req, req.param('channelName'));
-
+  
   },
 
   /*
@@ -37,6 +37,7 @@ module.exports = {
       sails.sockets.broadcast(req.param('channelName'), newMessage);
     },
 
+
     /*
             метод delete асинхронний, отримує request та response
             перевіряємо чи це isSocket
@@ -44,6 +45,7 @@ module.exports = {
             метод destroy видаляє по id повідомлення з БД
             метод broadcast отримує назву каналу та відправляє об'єкт з id яке потрібно видалити
     */
+
     delete: async function (req, res) {
       if (!req.isSocket) {
         return res.badRequest('Only socket accepted');
@@ -55,5 +57,6 @@ module.exports = {
         channelName: req.param('channelName')
       }
       sails.sockets.broadcast(req.param('channelName'), 'delete', data);
+
     }
 };

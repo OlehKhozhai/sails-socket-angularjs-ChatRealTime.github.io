@@ -65,10 +65,12 @@ angular.module('messages', [])
       $scope.$digest();
     });
 
+
     /*
         Метод deleteMessage приймає об'єкт повідомлення та назву каналу
         відправляємо delete(socket) запит на routes.js файл з назвою метода та об'єктом 
     */
+
     $scope.deleteMessage = function (message, channelName) {
       io.socket.delete('/delete', {
         id: message.id,
