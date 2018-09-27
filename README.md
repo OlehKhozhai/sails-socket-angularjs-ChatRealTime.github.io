@@ -28,8 +28,7 @@ $ mongo
 $ git clone https://github.com/Volocuga/ChatRealTime.github.io/tree/20180927-Oleh-forOurTeam
 $ cd ChatRealTime
 $ npm install
-$ mongo             // in first terminal
-$ sails lift        // in second terminal
+$ sails lift        
 ```
 
 ### Links
