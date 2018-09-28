@@ -48,24 +48,24 @@
           <div class="messages" ng-show="showMe">
             <form id="sport" ng-submit="false" name="sportForm" autocomplete="off">
               <div class="username">
-                <input type="text" placeholder="Name" name="userName" ng-model="sportText1" required>
+                <input type="text" placeholder="Name" maxlength="20" name="userName" ng-model="sportText1" required>
               </div>
               <div class="usertext">
-                <textarea cols="42" rows="4" placeholder="Message" maxlength="30" name="text" ng-model="sportText"
+                <textarea cols="42" rows="4" placeholder="Message" name="text" ng-model="sportText"
                   required></textarea>
               </div>
               <div>
-                <button ng-click="sendMessage('sport')" class="btnSend btn-send" ng-disabled="sportForm.$invalid">Send</button>
+                <button ng-click="sendMessage('sport')" class="btnSend btn-send" ng-disabled="sportForm.$invalid" ng-click="">Send</button>
               </div>
             </form>
             <ul class="chat-info">
-              <li ng-repeat='message in data.sport' ng-click="deleteMessage(message, 'sport')">
+              <li ng-repeat='message in data.sport'>
                 <div class="msgContainer">
                   <b>{{message.userName | uppercase}}:</b>
                   <p>{{message.text}}</p>
                 </div>
 
-                <div class="imgContainer">
+                <div class="imgContainer" ng-click="deleteMessage(message, 'sport')">
                   <img src="./images/close.png" alt="close">
                 </div>
               </li>
@@ -83,7 +83,7 @@
           <div class="messages" ng-show="showMe1">
             <form id="food" ng-submit="false" name="foodForm" autocomplete="off">
               <div class="username">
-                <input type="text" placeholder="Name" name="userName" ng-model="foodText1" required>
+                <input type="text" placeholder="Name" maxlength="20" name="userName" ng-model="foodText1" required>
               </div>
               <div class="usertext">
                 <textarea cols="42" rows="4" placeholder="Message" name="text" ng-model="foodText" required></textarea>
@@ -93,13 +93,13 @@
               </div>
             </form>
             <ul class="chat-info">
-              <li ng-repeat='message in data.food' ng-click="deleteMessage(message, 'food')">
+              <li ng-repeat='message in data.food'>
                 <div class="msgContainer">
                   <b>{{message.userName | uppercase}}:</b>
                   <p>{{message.text}}</p>
                 </div>
 
-                <div class="imgContainer">
+                <div class="imgContainer" ng-click="deleteMessage(message, 'food')">
                   <img src="./images/close.png" alt="close">
                 </div>
               </li>
@@ -117,7 +117,7 @@
           <div class="messages" ng-show="showMe2">
             <form id="it" name="itForm" ng-submit="false" autocomplete="off">
               <div class="username">
-                <input type="text" placeholder="Name" name="userName" ng-model="itText" required>
+                <input type="text" placeholder="Name" maxlength="20" name="userName" ng-model="itText" required>
               </div>
               <div class="usertext">
                 <textarea cols="42" rows="4" placeholder="Message" name="text" ng-model="itText1" required></textarea>
@@ -127,13 +127,13 @@
               </div>
             </form>
             <ul class="chat-info">
-              <li ng-repeat='message in data.it' ng-click="deleteMessage(message,'it')">
+              <li ng-repeat='message in data.it'>
                 <div class="msgContainer">
                   <b>{{message.userName | uppercase}}:</b>
                   <p>{{message.text}}</p>
                 </div>
 
-                <div class="imgContainer">
+                <div class="imgContainer" ng-click="deleteMessage(message,'it')">
                   <img src="./images/close.png" alt="close">
                 </div>
               </li>
@@ -143,7 +143,6 @@
       </div>
     </div>
   </main>
-
 
   <script src="/dependencies/sails.io.js"></script>
   <script src="/dependencies/angular.js"></script>
