@@ -34,7 +34,7 @@ angular.module('messages', [])
       $scope.foodText = null;
       $scope.foodText1 = null;
       $scope.itText = null;
-      $scope.itText1 = null;
+      $scope.itText1 = null; 
     };
 
     io.socket.on('message', function (msg) {
