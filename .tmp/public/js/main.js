@@ -18,24 +18,31 @@ angular.module('messages', [])
       sport: [],
       food: []
     };
-
+//$scope.sportForm.userName = 'hello';
     $scope.sendMessage = function (channelName) {
       let form = document.getElementById(channelName);
       let data = {
         channelName: channelName,
-        text: form.elements["text"].value,
-        userName: form.elements["userName"].value
+        text: $scope.sportText,
+        userName: $scope.sportText1
       };
 
-      io.socket.post('/send', data);
-      form.reset();
-      $scope.sportText = null;
-      $scope.sportText1 = null;
-      $scope.foodText = null;
-      $scope.foodText1 = null;
-      $scope.itText = null;
-      $scope.itText1 = null;
+      if (data.text || data.userName != null) {
+        io.socket.post('/send', data);
+        form.reset();
+        $scope.sportText = null;
+        $scope.sportText1 = null;
+        $scope.foodText = null;
+        $scope.foodText1 = null;
+        $scope.itText = null;
+        $scope.itText1 = null;
+      } else{
+         // $scope.sportText1.$dirty()
+      }
+
     };
+
+
 
     io.socket.on('message', function (msg) {
       $scope.data[msg.channelName].push({

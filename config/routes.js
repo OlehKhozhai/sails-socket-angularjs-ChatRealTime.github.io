@@ -33,7 +33,6 @@ module.exports.routes = {
   'POST /send': 'MessagesController.send',
   'DELETE /delete': 'MessagesController.delete'
 
-
   /***************************************************************************
    *                                                                          *
    * More custom routes here...                                               *

@@ -190,7 +190,9 @@ input:focus {
 
 
 
-
+.ng-dirty {
+    background-color: yellow;
+}
 
 
 
