@@ -5,15 +5,19 @@ module.exports = {
       return res.badRequest('Only socket accepted');
     }
 
-    sails.sockets.join(req, req.param('channelName'));
+    sails.sockets.join(req, req.param('channelName')); 
   
-  },
+  },   
 
   send: async function (req, res) {
       if (!req.isSocket) {
         return res.badRequest('Only socket accepted');
       }
 
+      if (!req.param('text') || !req.param('userName')) {
+        return res.badRequest('Form not correct');
+      }
+ 
       let message = {
         channelName: req.param('channelName'),
         text: req.param('text'),
