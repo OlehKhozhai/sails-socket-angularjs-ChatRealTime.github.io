@@ -27,13 +27,13 @@ module.exports.routes = {
   // '/': {
   //   view: 'pages/homepage'
   // },
-
+ 
   /*  зєднуємося з MessagesController і викликаємо відповідний метод */
-  'POST /on-connect': 'MessagesController.onConnect',
-  'POST /send': 'MessagesController.send',
-  'DELETE /delete': 'MessagesController.delete'
-
-
+  "GET /csrfToken":  "security/grant-csrf-token",
+  'POST /on-connect': { controller: 'MessagesController', action: 'onConnect', csrf: true },
+  'POST /send': { controller: 'MessagesController', action: 'send', csrf: true },
+  'DELETE /delete': { controller: 'MessagesController', action: 'delete', csrf: true }
+  
   /***************************************************************************
    *                                                                          *
    * More custom routes here...                                               *

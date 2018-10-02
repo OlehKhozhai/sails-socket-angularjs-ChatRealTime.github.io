@@ -5,39 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <link rel="icon" href="Messages-512.png" />
-
   <link rel="stylesheet" href="./styles/style.css">
-  <!-- Connect Bootstrap 4 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
-  <!-- Fontawesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
-
   <title>Chat Real Time</title>
 </head>
 
 <body ng-app='messages' ng-controller='messageFun'>
-
 
   <header id=header>
     <div class="container">
       <div class="header-text text-center">
         <h1 class="">Dream Chat</h1>
       </div>
-
     </div>
   </header>
 
-
-
   <main id="main">
-
-
     <div class="container">
       <div class="row d-flex">
 
@@ -45,30 +33,29 @@
           <div class="title d-flex align-items-center justify-content-between">
             <h2>Sport</h2>
             <button ng-click="connect('sport'); showMe=!showMe" class="btnSend btn-join">Join</button>
-
           </div>
 
           <div class="messages" ng-show="showMe">
-            <form id="sport" ng-submit="false" name="sportForm" autocomplete="off">
+            <form id="sport" name="sportForm" autocomplete="off">
               <div class="username">
-                <input type="text" placeholder="Name" name="userName" ng-model="sportText1" required>
+
+                <input type="text" placeholder="Name" maxlength="20" name="userName" maxlength="19">
               </div>
               <div class="usertext">
-                <textarea cols="42" rows="4" placeholder="Message" maxlength="30" name="text" ng-model="sportText"
-                  required></textarea>
+                <textarea cols="42" rows="4" placeholder="Message" name="text"  maxlength="254" ng-model="textAreaSport"></textarea>{{textAreaSport.length}}/254
               </div>
               <div>
-                <button ng-click="sendMessage('sport')" class="btnSend btn-send" ng-disabled="sportForm.$invalid">Send</button>
+                <button ng-click="sendMessage('sport'); textAreaSport = ''" class="btnSend btn-send">Send</button>
               </div>
             </form>
             <ul class="chat-info">
-              <li ng-repeat='message in data.sport' ng-click="deleteMessage(message, 'sport')">
+              <li ng-repeat='message in data.sport'>
                 <div class="msgContainer">
                   <b>{{message.userName | uppercase}}:</b>
                   <p>{{message.text}}</p>
                 </div>
 
-                <div class="imgContainer">
+                <div class="imgContainer" ng-click="deleteMessage(message, 'sport')">
                   <img src="./images/close.png" alt="close">
                 </div>
               </li>
@@ -86,57 +73,57 @@
           <div class="messages" ng-show="showMe1">
             <form id="food" ng-submit="false" name="foodForm" autocomplete="off">
               <div class="username">
-                <input type="text" placeholder="Name" name="userName" ng-model="foodText1" required>
+                <input type="text" placeholder="Name" maxlength="20" name="userName" maxlength="19">
               </div>
               <div class="usertext">
-                <textarea cols="42" rows="4" placeholder="Message" name="text" ng-model="foodText" required></textarea>
+                <textarea cols="42" rows="4" placeholder="Message" name="text" maxlength="254" ng-model="textAreaFood"></textarea>{{textAreaFood.length}}/254
               </div>
               <div>
-                <button ng-click="sendMessage('food')" class="btnSend btn-send" ng-disabled="foodForm.$invalid">Send</button>
+                <button ng-click="sendMessage('food'); textAreaFood = ''" class="btnSend btn-send">Send</button>
               </div>
             </form>
             <ul class="chat-info">
-              <li ng-repeat='message in data.food' ng-click="deleteMessage(message, 'food')">
+              <li ng-repeat='message in data.food'>
                 <div class="msgContainer">
                   <b>{{message.userName | uppercase}}:</b>
                   <p>{{message.text}}</p>
                 </div>
 
-                <div class="imgContainer">
+                <div class="imgContainer" ng-click="deleteMessage(message, 'food')">
                   <img src="./images/close.png" alt="close">
                 </div>
               </li>
             </ul>
           </div>
+
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="title d-flex align-items-center justify-content-between">
             <h2>IT</h2>
             <button ng-click="connect('it'); showMe2=!showMe2" class="btnSend btn-join">Join</button>
-
           </div>
 
           <div class="messages" ng-show="showMe2">
             <form id="it" name="itForm" ng-submit="false" autocomplete="off">
               <div class="username">
-                <input type="text" placeholder="Name" name="userName" ng-model="itText" required>
+                <input type="text" placeholder="Name" maxlength="20" name="userName" maxlength="19">
               </div>
               <div class="usertext">
-                <textarea cols="42" rows="4" placeholder="Message" name="text" ng-model="itText1" required></textarea>
+                <textarea cols="42" rows="4" placeholder="Message" name="text" maxlength="254" ng-model="textAreaIt"></textarea>{{textAreaIt.length}}/254
               </div>
               <div>
-                <button ng-click="sendMessage('it')" class="btnSend btn-send" ng-disabled="itForm.$invalid">Send</button>
+                <button ng-click="sendMessage('it'); textAreaIt = ''" class="btnSend btn-send">Send</button>
               </div>
             </form>
             <ul class="chat-info">
-              <li ng-repeat='message in data.it' ng-click="deleteMessage(message,'it')">
+              <li ng-repeat='message in data.it'>
                 <div class="msgContainer">
                   <b>{{message.userName | uppercase}}:</b>
                   <p>{{message.text}}</p>
                 </div>
 
-                <div class="imgContainer">
+                <div class="imgContainer" ng-click="deleteMessage(message,'it')">
                   <img src="./images/close.png" alt="close">
                 </div>
               </li>
@@ -146,7 +133,6 @@
       </div>
     </div>
   </main>
-
 
   <script src="/dependencies/sails.io.js"></script>
   <script src="/dependencies/angular.js"></script>

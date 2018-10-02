@@ -8,7 +8,8 @@
 module.exports = {   
   attributes: {
     channelName: {type: 'string', required: true},   
-    text:  { type: 'string', required: true },
-    userName: { type: 'string', required: true }   
+    text:  { type: 'string', required: true, maxLength: 255 },
+    userName: { type: 'string', required: true, maxLength: 20 }   
   },
 };
+   
