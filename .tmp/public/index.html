@@ -39,13 +39,13 @@
             <form id="sport" name="sportForm" autocomplete="off">
               <div class="username">
 
-                <input type="text" placeholder="Name" maxlength="20" name="userName" required>
+                <input type="text" placeholder="Name" maxlength="20" name="userName" maxlength="19">
               </div>
               <div class="usertext">
-                <textarea cols="42" rows="4" placeholder="Message" name="text" required></textarea>
+                <textarea cols="42" rows="4" placeholder="Message" name="text"  maxlength="254" ng-model="textAreaSport"></textarea>{{textAreaSport.length}}/254
               </div>
               <div>
-                <button ng-click="sendMessage('sport')" class="btnSend btn-send">Send</button>
+                <button ng-click="sendMessage('sport'); textAreaSport = ''" class="btnSend btn-send">Send</button>
               </div>
             </form>
             <ul class="chat-info">
@@ -73,13 +73,13 @@
           <div class="messages" ng-show="showMe1">
             <form id="food" ng-submit="false" name="foodForm" autocomplete="off">
               <div class="username">
-                <input type="text" placeholder="Name" maxlength="20" name="userName" required>
+                <input type="text" placeholder="Name" maxlength="20" name="userName" maxlength="19">
               </div>
               <div class="usertext">
-                <textarea cols="42" rows="4" placeholder="Message" name="text" required></textarea>
+                <textarea cols="42" rows="4" placeholder="Message" name="text" maxlength="254" ng-model="textAreaFood"></textarea>{{textAreaFood.length}}/254
               </div>
               <div>
-                <button ng-click="sendMessage('food')" class="btnSend btn-send">Send</button>
+                <button ng-click="sendMessage('food'); textAreaFood = ''" class="btnSend btn-send">Send</button>
               </div>
             </form>
             <ul class="chat-info">
@@ -107,13 +107,13 @@
           <div class="messages" ng-show="showMe2">
             <form id="it" name="itForm" ng-submit="false" autocomplete="off">
               <div class="username">
-                <input type="text" placeholder="Name" maxlength="20" name="userName" required>
+                <input type="text" placeholder="Name" maxlength="20" name="userName" maxlength="19">
               </div>
               <div class="usertext">
-                <textarea cols="42" rows="4" placeholder="Message" name="text" required></textarea>
+                <textarea cols="42" rows="4" placeholder="Message" name="text" maxlength="254" ng-model="textAreaIt"></textarea>{{textAreaIt.length}}/254
               </div>
               <div>
-                <button ng-click="sendMessage('it')" class="btnSend btn-send">Send</button>
+                <button ng-click="sendMessage('it'); textAreaIt = ''" class="btnSend btn-send">Send</button>
               </div>
             </form>
             <ul class="chat-info">

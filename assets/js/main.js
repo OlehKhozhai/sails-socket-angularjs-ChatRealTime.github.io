@@ -9,19 +9,19 @@ angular.module('messages', [])
 
     $scope._csrf = null
     $scope.getCSRFToken = (function () {
-      $http.get('http://localhost:1337/csrfToken')
+      $http.get('/csrfToken')
         .then(response => $scope._csrf = response.data._csrf);
-    }());
+    })();
 
     $scope.connect = function (channelName) {
-      $http.get('http://localhost:1337/messages?where={"channelName":{"contains":"' + channelName + '"}}')
+      $http.get('/messages?where={"channelName":{"contains":"' + channelName + '"}}')
         .then(dataArray => $scope.data[channelName] = dataArray.data);
 
       io.socket.post('/on-connect', {
         channelName: channelName,
         _csrf: $scope._csrf
       });
-    }; 
+    };
 
     $scope.sendMessage = function (channelName) {
       let form = document.getElementById(channelName);
@@ -32,10 +32,19 @@ angular.module('messages', [])
         _csrf: $scope._csrf
       };
 
-      if (data.text && data.userName != '') {
-        io.socket.post('/send', data); 
-        form.reset();
-      };
+      $scope.validationForm = (function (data) {
+        if ((data.userName === '') || (data.text === '')) {
+          alert('The field user name or text are empty');
+        } else if ((data.text.length > 255) || (data.userName.length > 20)) {
+          alert('User name more then 20 symbols or Your text more then 255 symbol');
+        } else {
+          io.socket.post('/send', data);
+          form.reset();
+        };
+      });
+
+      $scope.validationForm(data);
+
     };
 
     $scope.deleteMessage = function (message, channelName) {
