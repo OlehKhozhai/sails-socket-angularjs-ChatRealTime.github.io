@@ -1,61 +1,60 @@
 angular.module('messages', [])
   .controller('messageFun', ['$http', '$scope', function ($http, $scope) {
 
-    /*
-        Метод connect приймає рядком назву каналу
-        відправляє http get запит щоб отримати дані з БД
-        отримані дані записуємо в масив і виводимо на екран 
-        відправляємо post(socket) запит на routes.js файл з назвою метода та об'єктом з ключем та назвою каналу 
-    */
-    $scope.connect = function (channelName) {
-      $http
-        .get('http://localhost:1337/messages?where={"channelName":{"contains":"' + channelName + '"}}')
-        .then(function (dataArray) {
-          $scope.data[channelName] = dataArray.data;
-        })
-
-      io.socket.post('/on-connect', {
-        channelName: channelName
-      });
-    }
-
-    /* створюємо об'єкт data де будемо зберігати дані з чатів */
-
     $scope.data = {
       it: [],
       sport: [],
       food: []
     };
 
-    /*
-       Метод sendMessage приймає рядком назву каналу
-       в змінну form записуємо об'єкт потрібної нам форми
-       створюємо об'єкт data де будемо зберігати дані з форми 
-       відправляємо post(socket) запит на routes.js файл з назвою метода та об'єктом форми
-       reset() очищуємо поля форми і прирівнюємо їх до null для валідації
-    */
+    $scope._csrf = null
+    $scope.getCSRFToken = (function () {
+      $http.get('/csrfToken')
+        .then(response => $scope._csrf = response.data._csrf);
+    })();
+
+    $scope.connect = function (channelName) {
+      $http.get('/messages?where={"channelName":{"contains":"' + channelName + '"}}')
+        .then(dataArray => $scope.data[channelName] = dataArray.data);
+
+      io.socket.post('/on-connect', {
+        channelName: channelName,
+        _csrf: $scope._csrf
+      });
+    };
+
     $scope.sendMessage = function (channelName) {
       let form = document.getElementById(channelName);
       let data = {
         channelName: channelName,
         text: form.elements["text"].value,
-        userName: form.elements["userName"].value
+        userName: form.elements["userName"].value,
+        _csrf: $scope._csrf
       };
 
-      io.socket.post('/send', data);
-      form.reset();
-      $scope.sportText = null;
-      $scope.sportText1 = null;
-      $scope.foodText = null;
-      $scope.foodText1 = null;
-      $scope.itText = null;
-      $scope.itText1 = null;
+      $scope.validationForm = (function (data) {
+        if ((data.userName === '') || (data.text === '')) {
+          alert('The field user name or text are empty');
+        } else if ((data.text.length > 255) || (data.userName.length > 20)) {
+          alert('User name more then 20 symbols or Your text more then 255 symbol');
+        } else {
+          io.socket.post('/send', data);
+          form.reset();
+        };
+      });
+
+      $scope.validationForm(data);
+
     };
 
-    /*
-        отримуємо об'єкт з MessagesController зі змінами які записуємо в data[msg.channelName]
-        $digest() дивиться за змінами в scope і викликає слухачів для рендерінгу
-    */
+    $scope.deleteMessage = function (message, channelName) {
+      io.socket.delete('/delete', {
+        id: message.id,
+        channelName: channelName,
+        _csrf: $scope._csrf
+      });
+    }
+
     io.socket.on('message', function (msg) {
       $scope.data[msg.channelName].push({
         userName: msg.userName,
@@ -65,25 +64,6 @@ angular.module('messages', [])
       $scope.$digest();
     });
 
-
-    /*
-        Метод deleteMessage приймає об'єкт повідомлення та назву каналу
-        відправляємо delete(socket) запит на routes.js файл з назвою метода та об'єктом 
-    */
-
-    $scope.deleteMessage = function (message, channelName) {
-      io.socket.delete('/delete', {
-        id: message.id,
-        channelName: channelName
-      });
-    }
-
-    /*
-       отримуємо об'єкт msg з MessagesController
-       в зміну і записуємо index елемента з msg
-       видаляємо з data[msg.channelName] елемент з index і
-       $digest() дивиться за змінами в scope і викликає слухачів для рендерінгу
-     */
     io.socket.on('delete', function (msg) {
       let i = $scope.data[msg.channelName].findIndex(obj => obj.id === msg.id);
       $scope.data[msg.channelName].splice(i, 1);
